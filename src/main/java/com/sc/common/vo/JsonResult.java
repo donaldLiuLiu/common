@@ -1,7 +1,6 @@
 package com.sc.common.vo;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sc.common.enums.JsonResultEnum;
 
