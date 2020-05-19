@@ -1,9 +1,33 @@
 package com.sc.common.vo;
 
+/**
+ * 在JsonResult的基础上增加data节点，表示返回的数据
+ * {
+ *     "message": "SUCCESS",
+ *     "code": "1",
+ *     "success": true,
+ *     "data": {  //返回的数据是一个对象
+ *     }
+ * }
+ *
+ * {
+ *     "message": "SUCCESS",
+ *     "code": "1",
+ *     "success": true,
+ *     "data": [  //返回的数据是一个列表
+ *         {
+ *         },
+ *         {
+ *         }
+ *     ]
+ * }
+ *
+ *
+ * @param <T>
+ */
 public class BasicJsonResult<T> extends JsonResult {
     protected BasicJsonResult() { }
     private T data;
-
 
     public T getData() {
         return data;

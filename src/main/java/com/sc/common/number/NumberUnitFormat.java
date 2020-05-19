@@ -1,11 +1,16 @@
 package com.sc.common.number;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class NumberUnitFormat {
 
     public static Map<Integer, String> CONV = new HashMap<>();
+    private static final int MAXIMUM_CAPACITY = 1 << 30;
+
     static { //thread
         CONV.put(1, "十");
         CONV.put(2, "百");
@@ -88,6 +93,23 @@ public class NumberUnitFormat {
     public static Long esStr2Long(String val) {
         if(val==null) return null;
         return convert2Long(val);
+    }
+
+    /**
+     * 向上取最接近的2^
+     * @param n
+     * @return
+     */
+    public static final int closestPower(int n) {
+        if(n < 0) return 1;
+        if(n >= MAXIMUM_CAPACITY) return MAXIMUM_CAPACITY;
+        int c = n - 1; //n已经是 2^m次方的情况
+        c |= c >>> 1;
+        c |= c >>> 2;
+        c |= c >>> 4;
+        c |= c >>> 8;
+        c |= c >>> 16;  //最多移16位的原因，与MAXIMUM_CAPACITY最大值相关
+        return (c < 0) ? 1 : (c >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : c + 1;
     }
 
 }

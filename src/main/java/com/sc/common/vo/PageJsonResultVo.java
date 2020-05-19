@@ -5,6 +5,27 @@ import lombok.experimental.Accessors;
 
 import java.util.List;
 
+/**
+ * 分页数据的返回
+ *  {
+ *       "message": "SUCCESS",
+ *       "code": "1",
+ *       "success": true,
+ *       "data": {
+ *           "items": [
+ *               {
+ *               },
+ *               {
+ *               }
+ *           ],
+ *           "total": 1,
+ *           "page": 1,
+ *           "pageSize": 10,
+ *           "pages": 1
+ *       }
+ *   }
+ * @param <T>
+ */
 @Data
 @Accessors(chain = true)
 public class PageJsonResultVo<T> {

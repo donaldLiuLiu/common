@@ -4,6 +4,21 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sc.common.enums.JsonResultEnum;
 
+/**
+ * 基础json返回字段定义
+ *成功，返回如下
+ * {
+ *     "message": "SUCCESS",
+ *     "code": "1",
+ *     "success": true
+ *}
+ *失败，返回如下
+ *{
+ *     "message": "错误message",
+ *     "code": "错误code",
+ *     "success": false
+ *}
+ */
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class JsonResult {
 
@@ -75,9 +90,9 @@ public class JsonResult {
         return buildResult(JsonResultEnum.FAIL.getCode(), message, false);
     }
 
-
-
-
+    public static JsonResult buildFailedResult(String code, String message) {
+        return buildResult(code, message, false);
+    }
 
 
 }
