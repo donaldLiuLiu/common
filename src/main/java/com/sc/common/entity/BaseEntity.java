@@ -30,13 +30,15 @@ public abstract class BaseEntity<ID> implements Serializable {
 	//private Date createTime = new Date();
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
-	private LocalDateTime createTime = LocalDateTime.now(ZoneOffset.of("+8"));
-	
+	//private LocalDateTime createTime = LocalDateTime.now(ZoneOffset.of("+8"));
+	private LocalDateTime createTime;
+
 	//@JsonFormat(pattern= "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	//private Date modifyTime = new Date();
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
-	private LocalDateTime modifyTime = LocalDateTime.now(ZoneOffset.of("+8"));
+	//private LocalDateTime modifyTime = LocalDateTime.now(ZoneOffset.of("+8"));
+	private LocalDateTime modifyTime;
 
 }
