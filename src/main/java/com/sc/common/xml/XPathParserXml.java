@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.HashMap;
 
@@ -25,9 +27,13 @@ public class XPathParserXml {
     private EntityResolver entityResolver;  //校验文件加载
     private XPath xpath;
 
-    public XPathParserXml(String xml, boolean validation, EntityResolver entityResolver) {
+    public XPathParserXml(String xmlContent, boolean validation, EntityResolver entityResolver) {
         init(validation, entityResolver);
-        this.document = createDocument(new InputSource(new StringReader(xml)));
+        this.document = createDocument(new InputSource(new StringReader(xmlContent)));
+    }
+    public XPathParserXml(InputStream xmlIn, boolean validation, EntityResolver entityResolver) {
+        init(validation, entityResolver);
+        this.document = createDocument(new InputSource(xmlIn));
     }
     private void init(boolean validation, EntityResolver entityResolver) {
         this.validation = validation;
@@ -41,10 +47,12 @@ public class XPathParserXml {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             factory.setValidating(validation);
+
             factory.setIgnoringComments(true);
             factory.setExpandEntityReferences(true);
             factory.setNamespaceAware(false);
             factory.setCoalescing(false);
+            factory.setIgnoringElementContentWhitespace(false);
 
             DocumentBuilder builder = factory.newDocumentBuilder();
             builder.setEntityResolver(entityResolver);
