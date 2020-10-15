@@ -1,4 +1,4 @@
-package com.sc.common.proxy;
+package com.sc.common.mapper.proxy.test;
 
 import org.apache.ibatis.annotations.Select;
 

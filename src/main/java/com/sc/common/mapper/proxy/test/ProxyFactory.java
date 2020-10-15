@@ -1,4 +1,4 @@
-package com.sc.common.proxy;
+package com.sc.common.mapper.proxy.test;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;

@@ -3,7 +3,7 @@ package com.sc.common.logic.exp;
 import java.util.function.Predicate;
 
 /**
- * predicate a simple logic expression: & | !
+ * provide a simple logic expression: & | !
  * using "()" to contains a sub-expression:  (p1 &p2 & (p2-1 | p2-2)) | ! p3 | (p4 ) | !(p5 & p6)
  * eg: {expression="p1 & p2 & p3"
  *       return true only when predicate("p1")=true and  predicate("p2")=true and predicate("p3")=true
