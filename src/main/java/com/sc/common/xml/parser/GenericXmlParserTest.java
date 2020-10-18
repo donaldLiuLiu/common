@@ -1,5 +1,7 @@
-package com.sc.common.xml;
+package com.sc.common.xml.parser;
 
+import com.sc.common.xml.ClasspathEntityResolver;
+import com.sc.common.xml.DefaultErrorHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

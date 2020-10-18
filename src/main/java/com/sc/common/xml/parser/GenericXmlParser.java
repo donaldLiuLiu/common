@@ -1,4 +1,4 @@
-package com.sc.common.xml;
+package com.sc.common.xml.parser;
 
 import org.w3c.dom.Document;
 import org.xml.sax.EntityResolver;

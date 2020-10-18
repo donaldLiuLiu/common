@@ -1,5 +1,8 @@
-package com.sc.common.xml;
+package com.sc.common.xml.parser;
 
+import com.sc.common.xml.ClasspathEntityResolver;
+import com.sc.common.xml.DefaultErrorHandler;
+import com.sc.common.xml.DefaultNamespaceResolver;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 

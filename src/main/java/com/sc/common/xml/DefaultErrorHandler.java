@@ -14,10 +14,10 @@ public class DefaultErrorHandler implements ErrorHandler {
     }
     @Override
     public void error(SAXParseException exception) throws SAXException {
-        System.out.println(exception);
+        throw new RuntimeException(exception);
     }
     @Override
     public void fatalError(SAXParseException exception) throws SAXException {
-        System.out.println(exception);
+        throw new RuntimeException(exception);
     }
 }
