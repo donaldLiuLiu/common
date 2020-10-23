@@ -1,5 +1,7 @@
 package com.sc.common.placeholder;
 
+import com.sc.common.utils.AssertUtils;
+
 /**
  * PlaceHolder解析器，对给定的String,解析替换其中的placeholder
  * eg: {@link SimplePlaceHolderResolverTest}
@@ -25,7 +27,7 @@ public class SimplePlaceHolderResolver {
     /**
      * PlaceHolder不能解析时，是否忽略
      * default true, will原样返回
-     * if false: where throw IllegalArgumentException
+     * if false: where throw exception
      */
     private final Boolean ignoreUnresolvablePlaceHolder;
 
@@ -69,8 +71,8 @@ public class SimplePlaceHolderResolver {
     }
 
     public String resolve(String value, PlaceHolderSourceValueResolver placeHolderSourceValueResolver) {
-        if(value == null) throw new IllegalArgumentException("参数value不能为空");
-        if(placeHolderSourceValueResolver == null) throw new IllegalArgumentException("参数placeHolderSourceValueResolver不能为空");
+        AssertUtils.ifTrue(value == null, () -> "参数value不能为空", null);
+        AssertUtils.ifTrue(placeHolderSourceValueResolver == null, () -> "参数placeHolderSourceValueResolver不能为空", null);
         int findPrefix = value.indexOf(prefix);
 
         if(findPrefix == -1) return value;
@@ -104,7 +106,7 @@ public class SimplePlaceHolderResolver {
                     result.replace(findPrefix, findRelativeSuffix+suffix.length(), mValue);
                     findPrefix = result.indexOf(prefix, findPrefix + mValue.length());
                 } else if(!ignoreUnresolvablePlaceHolder){
-                    throw new IllegalArgumentException("参数value=["+result+"],存在不能解析的placeHolder:["+nestedResolvedPlaceHolder+"]");
+                    AssertUtils.ifTrue(true, () -> "参数value=["+result+"],存在不能解析的placeHolder:["+nestedResolvedPlaceHolder+"]", null);
                 } else {
                     findPrefix = result.indexOf(prefix, findRelativeSuffix + suffix.length());
                 }

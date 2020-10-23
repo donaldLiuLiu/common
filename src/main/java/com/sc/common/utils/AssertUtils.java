@@ -1,38 +1,44 @@
 package com.sc.common.utils;
 
+import com.sc.common.exception.BizException;
 import java.util.function.Supplier;
 
 public abstract class AssertUtils {
 
     /**
-     * when not true throw expression
+     * 是否为true, if 不为true throw exception
      * @param expression
-     * @param type
-     * @param messageSupplier
+     * @param message
+     * @param exceptionCode
      */
-    public static void isTrue(boolean expression, ExpressionType type, Supplier<String> messageSupplier) {
+    public static void isTrue(boolean expression,
+                              Supplier<String> message,
+                              Supplier<String> exceptionCode) {
         if (!expression) {
-            throwsExp(type, messageSupplier);
+            throwsExp(message, exceptionCode);
         }
     }
 
-    private static String nullSafeGet(Supplier<String> messageSupplier) {
-        return messageSupplier!=null ?messageSupplier.get() :"";
+    /**
+     * 如果为true, 抛异常
+     * @param expression
+     * @param message
+     * @param exceptionCode
+     */
+    public static void ifTrue(boolean expression,
+                              Supplier<String> message,
+                              Supplier<String> exceptionCode) {
+        isTrue(!expression, message, exceptionCode);
     }
 
-    private static void throwsExp(ExpressionType type, Supplier<String> messageSupplier) {
-        if(type == null) throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-        switch (type) {
-            case None:
-                throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-            case IllegalArgumentException:
-                throw new RuntimeException(nullSafeGet(messageSupplier));
-            default:
-                throw new IllegalArgumentException(nullSafeGet(messageSupplier));
-        }
+    private static Supplier<String> nullSafeGet(Supplier<String> supplier) {
+        return supplier != null ? supplier : () -> "";
     }
-    public enum ExpressionType {
-        None, IllegalArgumentException
+
+    private static void throwsExp(Supplier<String> message,
+                                  Supplier<String> exceptionCode) {
+        throw new BizException(nullSafeGet(message), nullSafeGet(exceptionCode));
     }
+
 
 }

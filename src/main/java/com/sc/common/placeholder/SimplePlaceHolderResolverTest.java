@@ -23,6 +23,7 @@ public class SimplePlaceHolderResolverTest {
         source.put("username;123456", "nextedValue");
 
 
+        //resolver.resolve(null, source::get);
         //System.out.println(resolver.resolve("username: ${username}", source::get));
         //System.out.println(resolver.resolve("password: ${password}", source::get));
         //System.out.println(resolver.resolve("username: ${username}${sep}password: ${password}", source::get));

@@ -2,7 +2,6 @@ package com.sc.common.logic.exp;
 
 
 import com.sc.common.utils.AssertUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,11 +36,11 @@ public abstract class SimpleLogicExpParser {
                     state = null;
                     break;
                 case "&":
-                    AssertUtils.isTrue(state == null || state == ParserState.AND, AssertUtils.ExpressionType.IllegalArgumentException, () -> "invalid expression["+expression+"]: when the expression or sub-expression is using the |, here con not using &");
+                    AssertUtils.isTrue(state == null || state == ParserState.AND, () -> "invalid expression["+expression+"]: when the expression or sub-expression is using the |, here con not using &", null);
                     state = ParserState.AND;
                     break;
                 case "|":
-                    AssertUtils.isTrue(state == null || state == ParserState.OR, AssertUtils.ExpressionType.IllegalArgumentException, () -> "invalid expression["+expression+"]: when the expression or sub-expression is using the &, here con not using |");
+                    AssertUtils.isTrue(state == null || state == ParserState.OR, () -> "invalid expression["+expression+"]: when the expression or sub-expression is using the &, here con not using |", null);
                     state = ParserState.OR;
                     break;
                 case "!":
@@ -59,7 +58,7 @@ public abstract class SimpleLogicExpParser {
     }
 
     private static SimpleLogicExp merge(List<SimpleLogicExp> list, ParserState state, String expression) {
-        AssertUtils.isTrue(!list.isEmpty(), AssertUtils.ExpressionType.IllegalArgumentException, () -> "invalid expression["+expression+"]");
+        AssertUtils.isTrue(!list.isEmpty(), () -> "invalid expression["+expression+"]", null);
         if(list.size() == 1) return list.get(0);
         SimpleLogicExp exp = null;
         if(list.size() > 1) {
