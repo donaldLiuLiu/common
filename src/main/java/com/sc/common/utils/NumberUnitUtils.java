@@ -1,12 +1,10 @@
-package com.sc.common.number;
+package com.sc.common.utils;
 
-import com.sc.common.utils.AssertUtils;
-import com.sc.common.utils.StringUtils;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
-public abstract class NumberUnitFormat {
+public abstract class NumberUnitUtils {
 
     public static final Map<Integer, String> CONV = new HashMap<>();
     private static final int MAXIMUM_CAPACITY = 1 << 30;
@@ -75,11 +73,11 @@ public abstract class NumberUnitFormat {
 
     /**
      * 将Number对象转化为指定的Number子类型
-     *eg: NumberUnitFormat.convertNumberToTargetClazz(1, Integer.class, true);  //Integer to Integer
-     *    NumberUnitFormat.convertNumberToTargetClazz(1123L, Integer.class, true);  //Long to Integer
-     *    NumberUnitFormat.convertNumberToTargetClazz(123, Long.class, true);  //Integer to Long
-     *    NumberUnitFormat.convertNumberToTargetClazz(new BigInteger("1234"), Long.class, true);  //BigInteger to Long
-     *    NumberUnitFormat.convertNumberToTargetClazz(new BigDecimal("1234.345"), Long.class, true);  //BigDecimal to Long
+     *eg: NumberUnitUtils.convertNumberToTargetClazz(1, Integer.class, true);  //Integer to Integer
+     *    NumberUnitUtils.convertNumberToTargetClazz(1123L, Integer.class, true);  //Long to Integer
+     *    NumberUnitUtils.convertNumberToTargetClazz(123, Long.class, true);  //Integer to Long
+     *    NumberUnitUtils.convertNumberToTargetClazz(new BigInteger("1234"), Long.class, true);  //BigInteger to Long
+     *    NumberUnitUtils.convertNumberToTargetClazz(new BigDecimal("1234.345"), Long.class, true);  //BigDecimal to Long
      * @param number Number对象
      * @param clazz Number子类型的Class
      * @param checkBorder true:对clazz进行边界检查,如果超过边界,抛异常;false:不边界检查,如果number的数值超过clazz类型的边界,将发生截断,导致值不可预料
@@ -152,7 +150,7 @@ public abstract class NumberUnitFormat {
 
     public static void main(String argv[]) {
 
-        int result2 = NumberUnitFormat.parseTextToTargetNumber("0x123", Integer.class);
+        int result2 = NumberUnitUtils.parseTextToTargetNumber("0x123", Integer.class);
 
 
 
