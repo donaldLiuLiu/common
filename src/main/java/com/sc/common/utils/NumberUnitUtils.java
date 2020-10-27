@@ -89,7 +89,7 @@ public abstract class NumberUnitUtils {
 
         if(clazz.isInstance(number)) {
             return (T) number;
-        } else if(Byte.class == clazz || byte.class == clazz) {
+        } else if(Byte.class == clazz || Byte.TYPE == clazz) {
             if(checkBorder) {
                 long l = resolveLongValue(number, clazz);
                 if(l < Byte.MIN_VALUE || l > Byte.MAX_VALUE) {
@@ -97,7 +97,7 @@ public abstract class NumberUnitUtils {
                 }
             }
             return (T) Byte.valueOf(number.byteValue());
-        } else if(Short.class == clazz || short.class == clazz) {
+        } else if(Short.class == clazz || Short.TYPE == clazz) {
             if(checkBorder) {
                 long l = resolveLongValue(number, clazz);
                 if (l < Short.MIN_VALUE || l > Short.MAX_VALUE) {
@@ -105,7 +105,7 @@ public abstract class NumberUnitUtils {
                 }
             }
             return (T) Short.valueOf(number.shortValue());
-        } else if(Integer.class == clazz || int.class == clazz) {
+        } else if(Integer.class == clazz || Integer.TYPE == clazz) {
             if(checkBorder) {
                 long l = resolveLongValue(number, clazz);
                 if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {
@@ -113,7 +113,7 @@ public abstract class NumberUnitUtils {
                 }
             }
             return (T) Integer.valueOf(number.intValue());
-        } else if(Long.class == clazz || long.class == clazz) {
+        } else if(Long.class == clazz || Long.TYPE == clazz) {
             long l = resolveLongValue(number, clazz);
             return (T) Long.valueOf(l);
         } else if(BigInteger.class == clazz) {
@@ -122,9 +122,9 @@ public abstract class NumberUnitUtils {
             } else {
                 return (T) BigInteger.valueOf(number.longValue());
             }
-        } else if(Float.class == clazz || float.class == clazz) {
+        } else if(Float.class == clazz || Float.TYPE == clazz) {
             return (T) Float.valueOf(number.floatValue());
-        } else if(Double.class == clazz || double.class == clazz) {
+        } else if(Double.class == clazz || Double.TYPE == clazz) {
             return (T) Double.valueOf(number.doubleValue());
         } else if(BigDecimal.class == clazz) {
             return (T) new BigDecimal(number.toString());
@@ -149,9 +149,8 @@ public abstract class NumberUnitUtils {
     }
 
     public static void main(String argv[]) {
-
+        int result1 = NumberUnitUtils.convertNumberToTargetClazz(123, int.class, true);
         int result2 = NumberUnitUtils.parseTextToTargetNumber("0x123", Integer.class);
-
 
 
         System.out.println(1);
@@ -169,19 +168,19 @@ public abstract class NumberUnitUtils {
         AssertUtils.ifTrue(clazz==null, () -> "参数clazz[Class]不能为空", null);
 
         String trimedText = StringUtils.trimAllWhitespace(text);
-        if(Byte.class == clazz || byte.class == clazz) {
+        if(Byte.class == clazz || Byte.TYPE == clazz) {
             return (T) (StringUtils.isHexNumber(trimedText) ? Byte.decode(trimedText) : Byte.valueOf(trimedText));
-        } else if (Short.class == clazz || short.class == clazz) {
+        } else if (Short.class == clazz || Short.TYPE == clazz) {
             return (T) (StringUtils.isHexNumber(trimedText) ? Short.decode(trimedText) : Short.valueOf(trimedText));
-        } else if (Integer.class == clazz || int.class == clazz) {
+        } else if (Integer.class == clazz || Integer.TYPE == clazz) {
             return (T) (StringUtils.isHexNumber(trimedText) ? Integer.decode(trimedText) : Integer.valueOf(trimedText));
-        } else if (Long.class == clazz || long.class == clazz) {
+        } else if (Long.class == clazz || Long.TYPE == clazz) {
             return (T) (StringUtils.isHexNumber(trimedText) ? Long.decode(trimedText) : Long.valueOf(trimedText));
         } else if (BigInteger.class == clazz) {
             return (T) (StringUtils.isHexNumber(trimedText) ? decodeBigInteger(trimedText) : new BigInteger(trimedText));
-        } else if (Float.class == clazz || float.class == clazz) {
+        } else if (Float.class == clazz || Float.TYPE == clazz) {
             return (T) Float.valueOf(trimedText);
-        } else if (Double.class == clazz || double.class == clazz) {
+        } else if (Double.class == clazz || Double.TYPE == clazz) {
             return (T) Double.valueOf(trimedText);
         } else if (BigDecimal.class == clazz || Number.class == clazz) {
             return (T) new BigDecimal(trimedText);
