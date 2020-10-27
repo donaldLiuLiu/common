@@ -27,7 +27,7 @@ public class SimplePlaceHolderResolver {
     /**
      * PlaceHolder不能解析时，是否忽略
      * default true, will原样返回
-     * if false: where throw exception
+     * if false: were throw exception
      */
     private final Boolean ignoreUnresolvablePlaceHolder;
 
@@ -138,7 +138,7 @@ public class SimplePlaceHolderResolver {
             }
         }
         if(predit != 0) return -1;
-        return findPos- suffix.length();
+        return findPos - suffix.length();
     }
 
 }
