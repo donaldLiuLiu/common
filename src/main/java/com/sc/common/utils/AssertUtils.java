@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 public abstract class AssertUtils {
 
     /**
-     * 是否为true, if 不为true throw exception
+     * 是否为true, if expression不为true throw exception
      * @param expression
      * @param message
      * @param exceptionCode
@@ -20,7 +20,21 @@ public abstract class AssertUtils {
     }
 
     /**
-     * 如果为true, 抛异常
+     * 如果obj==null,抛异常
+     * @param obj
+     * @param message
+     * @param exceptionCode
+     */
+    public static void ifNull(Object obj,
+                              Supplier<String> message,
+                              Supplier<String> exceptionCode) {
+        if(obj == null) {
+            throwsExp(message, exceptionCode);
+        }
+    }
+
+    /**
+     * 如果expression为true, 抛异常
      * @param expression
      * @param message
      * @param exceptionCode
