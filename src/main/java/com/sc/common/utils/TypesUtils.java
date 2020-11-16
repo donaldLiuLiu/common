@@ -29,7 +29,7 @@ public abstract class TypesUtils {
     public static boolean isAssignableFrom(Type leftType, Type rightType) {
         return false;
     }
-
+ 
     /**
      * array类型
      *  1.Type是Class, primitive array(eg: int[]), array(eg: JsonResult[])
@@ -44,7 +44,7 @@ public abstract class TypesUtils {
                 );
     }
 
-    
+
 
 
 
