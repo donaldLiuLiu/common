@@ -1,23 +1,13 @@
 package com.sc.common.utils;
 
 import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TypesUtils {
-
-    /**
-     * @see Class#getTypeParameters
-     * @see Class#getGenericSuperclass
-     * @see Class#getGenericInterfaces
-     * @see java.lang.reflect.Constructor#getTypeParameters
-     * @see java.lang.reflect.Constructor#getGenericParameterTypes
-     * @see java.lang.reflect.Method#getGenericExceptionTypes
-     * @see java.lang.reflect.Method#getTypeParameters
-     * @see java.lang.reflect.Method#getGenericReturnType
-     * @see java.lang.reflect.Method#getGenericParameterTypes
-     * @see java.lang.reflect.Method#getGenericExceptionTypes
-     * @see java.lang.reflect.Field#getGenericType
-     */
 
     /**
      * packing ClazzUtils.isAssignableFrom
@@ -45,10 +35,33 @@ public abstract class TypesUtils {
     }
 
 
+    /**
+     * @see Class#getTypeParameters
+     * @see Class#getGenericSuperclass
+     * @see Class#getGenericInterfaces
+     * @see java.lang.reflect.Constructor#getTypeParameters
+     * @see java.lang.reflect.Constructor#getGenericParameterTypes
+     * @see java.lang.reflect.Method#getGenericExceptionTypes
+     * @see java.lang.reflect.Method#getTypeParameters
+     * @see java.lang.reflect.Method#getGenericReturnType
+     * @see java.lang.reflect.Method#getGenericParameterTypes
+     * @see java.lang.reflect.Method#getGenericExceptionTypes
+     * @see java.lang.reflect.Field#getGenericType
+     */
 
 
 
 
+static class Tery<T, E extends T> {}
+
+public static void main(String argv[]) {
+
+    TypeVariable<Class<Tery>>[] types = Tery.class.getTypeParameters();
+    System.out.println(types[1].getBounds()[0]);
+
+
+
+}
 
 
 
