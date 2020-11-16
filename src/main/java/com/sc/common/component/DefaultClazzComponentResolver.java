@@ -1,7 +1,6 @@
 package com.sc.common.component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * ClazzComponentResolver的默认实现
@@ -39,17 +38,22 @@ public class DefaultClazzComponentResolver extends AbstractComponentResolver<Cla
     public List<Class<?>> getAllInterfaces() {
         List<Class<?>> result = new ArrayList<>();
         List<Component<Class<?>>> childs = component.getChilds();
-        getAllInterfaces(result, childs);
+        Set<Class<?>> setLinked = getAllInterfacesBFS(childs);
+        result.addAll(setLinked);
         return result;
     }
-
-    private void getAllInterfaces(List<Class<?>> listResult, List<Component<Class<?>>> childs) {
-        for(Component<Class<?>> child : childs) {
-            if(child.getInfo().isInterface()) {
-                listResult.add(child.getInfo());
-                getAllInterfaces(listResult, child.getChilds());
+    private Set<Class<?>> getAllInterfacesBFS(List<Component<Class<?>>> childs) {
+        Set<Class<?>> listResult = new LinkedHashSet<>();
+        Queue<Component<Class<?>>> queueList = new LinkedList<>();
+        childs.forEach(queueList::offer);
+        while(!queueList.isEmpty()) {
+            Component<Class<?>> currentNode = queueList.poll();
+            if(currentNode.getInfo().isInterface()) {
+                listResult.add(currentNode.getInfo());
             }
+            currentNode.getChilds().forEach(queueList::offer);
         }
+        return listResult;
     }
 
 
