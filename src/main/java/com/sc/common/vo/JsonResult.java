@@ -54,7 +54,7 @@ public class JsonResult {
         BasicJsonResult<T> result = new BasicJsonResult<>();
         result.setSuccess(true);
         result.setCode(JsonResultEnum.SUCCESS.getCode());
-        result.setMessage("SUCCESS");
+        result.setMessage(JsonResultEnum.SUCCESS.getText());
         result.setData(data);
         return result;
     }
@@ -63,7 +63,7 @@ public class JsonResult {
         BasicJsonResult<PageJsonResultVo> result = new BasicJsonResult<>();
         result.setSuccess(true);
         result.setCode(JsonResultEnum.SUCCESS.getCode());
-        result.setMessage("SUCCESS");
+        result.setMessage(JsonResultEnum.SUCCESS.getText());
         PageJsonResultVo<T> pageJsonResultVo = new PageJsonResultVo<>();
         pageJsonResultVo.setPage(page.getCurrent())
                         .setPageSize(page.getSize())
