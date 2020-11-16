@@ -34,6 +34,18 @@ public abstract class AssertUtils {
     }
 
     /**
+     * 如果obj==null,抛异常
+     * @param obj
+     * @param message
+     * @param exceptionCode
+     */
+    public static void notNull(Object obj,
+                              Supplier<String> message,
+                              Supplier<String> exceptionCode) {
+        ifNull(obj, message, exceptionCode);
+    }
+
+    /**
      * 如果expression为true, 抛异常
      * @param expression
      * @param message
