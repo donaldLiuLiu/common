@@ -7,6 +7,7 @@ public abstract class AnnotatedUtils {
     //Constructor.getAnnotatedReturnType(),Constructor.getAnnotatedReceiverType()
     //Method.getAnnotatedReturnType
     //Field.getAnnotatedType
+    
     //AnnotatedElement
     //AnnotationAttribute
     //core.annotation
