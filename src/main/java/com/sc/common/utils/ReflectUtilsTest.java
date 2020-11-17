@@ -1,6 +1,5 @@
 package com.sc.common.utils;
 
-import com.sun.org.apache.xml.internal.security.encryption.ReferenceList;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
