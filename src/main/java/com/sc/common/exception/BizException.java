@@ -7,19 +7,20 @@ public class BizException extends RuntimeException {
 
     private Supplier<String> messageSupplier;
     private Supplier<String> exceptionCodeSupplier;
+    private static final Supplier<String> NULL_STRING_SUPPLIER = () -> "";
 
     public BizException() {
     }
 
     public BizException(Supplier<String> messageSupplier) {
-        super(Optional.ofNullable(messageSupplier).orElse(() -> "").get());
-        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(() -> "");
+        super(Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER).get());
+        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER);
     }
 
     public BizException(Supplier<String> messageSupplier, Supplier<String> exceptionCodeSupplier) {
-        super(Optional.ofNullable(messageSupplier).orElse(() -> "").get());
-        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(() -> "");
-        this.exceptionCodeSupplier = Optional.ofNullable(exceptionCodeSupplier).orElse(() -> "");
+        super(Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER).get());
+        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER);
+        this.exceptionCodeSupplier = Optional.ofNullable(exceptionCodeSupplier).orElse(NULL_STRING_SUPPLIER);
     }
 
     public BizException(Throwable e) {
@@ -27,14 +28,14 @@ public class BizException extends RuntimeException {
     }
 
     public BizException(Throwable e, Supplier<String> messageSupplier) {
-        super(Optional.ofNullable(messageSupplier).orElse(() -> "").get(), e);
-        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(() -> "");
+        super(Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER).get(), e);
+        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER);
     }
 
     public BizException(Throwable e, Supplier<String> messageSupplier, Supplier<String> exceptionCodeSupplier) {
-        super(Optional.ofNullable(messageSupplier).orElse(() -> "").get(), e);
-        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(() -> "");
-        this.exceptionCodeSupplier = Optional.ofNullable(exceptionCodeSupplier).orElse(() -> "");
+        super(Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER).get(), e);
+        this.messageSupplier = Optional.ofNullable(messageSupplier).orElse(NULL_STRING_SUPPLIER);
+        this.exceptionCodeSupplier = Optional.ofNullable(exceptionCodeSupplier).orElse(NULL_STRING_SUPPLIER);
     }
 
 
