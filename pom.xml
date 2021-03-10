@@ -3,31 +3,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
+
+    <!--<parent>
         <groupId>com.sc</groupId>
         <artifactId>common-parent</artifactId>
         <version>1.0</version>
+    </parent>-->
+    <parent>
+        <groupId>com.sc</groupId>
+        <artifactId>common-parent-boot</artifactId>
+        <version>1.0</version>
+        <relativePath />
     </parent>
     <artifactId>common</artifactId>
     <!-- 当前版本号1.0，如果1.0稳定后，继续开发1.1，则将版本号改成1.1 -->
     <version>1.0</version>
     <packaging>jar</packaging>
+    <name>common</name>
+    <description>common</description>
+    <url>https://www.github.com/freshlml/common</url>
+    <scm>
+        <url>https://www.github.com/freshlml/common</url>
+    </scm>
 
     <properties>
         <skipTests>true</skipTests>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.sc</groupId>
-                <artifactId>common-dependencies</artifactId>
-                <version>1.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!-- junit -->
