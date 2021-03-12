@@ -1,5 +1,8 @@
 package com.sc.common.exception;
 
+import com.sc.common.enums.JsonResultEnum;
+import com.sc.common.utils.StringUtils;
+
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -40,15 +43,23 @@ public class BizException extends RuntimeException {
 
 
     public String getExceptionCode() {
-        return this.exceptionCodeSupplier.get();
+        return Optional.ofNullable(this.exceptionCodeSupplier).orElse(NULL_STRING_SUPPLIER).get();
+    }
+
+    public String getExceptionCodeWith(String code) {
+        if(exceptionCodeSupplier==null || StringUtils.isEmpty(exceptionCodeSupplier.get())) {
+            return Optional.ofNullable(code).orElse(JsonResultEnum.FAIL.getCode());
+        }
+        return exceptionCodeSupplier.get();
     }
 
 
     public static void main(String argv[]) {
         Supplier<String> s = null;
-        BizException e = new BizException(s, () -> "403");
+        BizException e = new BizException(s/*, () -> "403"*/);
         System.out.println(e.getMessage());
         System.out.println(e.getExceptionCode());
+        System.out.println("with: " + e.getExceptionCodeWith("-33"));
     }
 
 }
